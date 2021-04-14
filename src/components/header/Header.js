@@ -19,7 +19,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import logo from "../../assets/logo.svg";
@@ -71,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     backgroundColor: theme.palette.common.blue,
     color: "white",
+    borderRadius: "0px",
   },
   menuItem: {
     ...theme.typography.tab,
@@ -110,13 +110,11 @@ function Header(props) {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleChange = (e, value) => {
-    setValue(value);
+    props.setValue(value);
   };
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -129,7 +127,7 @@ function Header(props) {
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
     setOpen(false);
-    setSelectedIndex(i);
+    props.setSelectedIndex(i);
   };
 
   const menuOptions = [
@@ -168,10 +166,13 @@ function Header(props) {
     [...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-            if (route.activeIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+          if (props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex);
+            if (
+              route.activeIndex &&
+              route.selectedIndex !== props.selectedIndex
+            ) {
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
@@ -179,12 +180,12 @@ function Header(props) {
           break;
       }
     });
-  }, [value, menuOptions, routes, selectedIndex]);
+  }, [props.value, menuOptions, routes, props.selectedIndex, props]);
 
   const tabs = (
     <React.Fragment>
       <Tabs
-        value={value}
+        value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor="primary"
@@ -226,10 +227,10 @@ function Header(props) {
             classes={{ root: classes.menuItem }}
             onClick={(event) => {
               handleMenuItemClick(event, index);
-              setValue(1);
+              props.setValue(1);
               handleClose();
             }}
-            selected={index === selectedIndex && value === 1}
+            selected={index === props.selectedIndex && props.value === 1}
           >
             {option.name}
           </MenuItem>
@@ -256,13 +257,13 @@ function Header(props) {
                 key={index}
                 onClick={() => {
                   setOpenDrawer(false);
-                  setValue(route.activeIndex);
+                  props.setValue(route.activeIndex);
                 }}
                 divider
                 button
                 component={Link}
                 to={route.link}
-                selected={value === route.activeIndex}
+                selected={props.value === route.activeIndex}
                 classes={{ selected: classes.drawerItemSelected }}
               >
                 <ListItemText className={classes.drawerItem} disableTypography>
@@ -274,9 +275,9 @@ function Header(props) {
           <ListItem
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              props.setValue(5);
             }}
-            selected={value === 5}
+            selected={props.value === 5}
             divider
             button
             component={Link}
