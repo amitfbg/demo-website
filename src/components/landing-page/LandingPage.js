@@ -4,11 +4,20 @@ import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Button, useMediaQuery, useTheme } from "@material-ui/core";
 import ButtonArrow from "../../assets/arrowButton";
 import LandingImageTechnology from "../../assets/images/landingImage1";
 
 const useStyles = makeStyles((theme) => ({
+  mainContainer: {
+    marginTop: "5em",
+    [theme.breakpoints.down("md")]: {
+      marginTop: "3em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "2em",
+    },
+  },
   estimateButton: {
     backgroundColor: theme.palette.common.orange,
     fontSize: "1rem",
@@ -40,15 +49,6 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
-    },
-  },
-  mainContainer: {
-    marginTop: "5em",
-    [theme.breakpoints.down("md")]: {
-      marginTop: "3em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginTop: "2em",
     },
   },
   heroTextContainer: {
@@ -113,23 +113,30 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 1rem 0;
 `;
 const Title = styled.div`
   color: #0b72b9;
   font-size: 3rem;
   font-weight: bold;
-  padding-bottom: 1rem;
   text-align: center;
 `;
 
 const LandingPage = (props) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <>
-      <Grid container direction="column">
+      <Grid container direction="column" className={classes.mainContainer}>
         <Grid item>
-          <Grid container justify="flex-end" alignItems="center">
-            <Grid item>
+          <Grid
+            container
+            justify={matchesSM ? "center" : "flex-end"}
+            alignItems="center"
+          >
+            <Grid sm item>
               <Title>
                 Bringing West Coast Technology <br />
                 to you
@@ -151,19 +158,20 @@ const LandingPage = (props) => {
                   to="/revolution"
                   onClick={() => props.setValue(2)}
                 >
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <span style={{ marginRight: "0.5rem" }}>Learn More</span>
-                    <ButtonArrow
-                      height={"0.9rem"}
-                      width={"0.9rem"}
-                      fill={"red"}
-                    />
-                  </div>
+                  <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                  <ButtonArrow
+                    height={"0.9rem"}
+                    width={"0.9rem"}
+                    fill={"red"}
+                  />
                 </Button>
               </ButtonContainer>
             </Grid>
-            <Grid item>
-              <LandingImageTechnology />
+            <Grid sm item>
+              <LandingImageTechnology
+                matchesSM={matchesSM}
+                matchesXS={matchesXS}
+              />
             </Grid>
           </Grid>
         </Grid>
