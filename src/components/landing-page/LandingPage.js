@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
 import { Button } from "@material-ui/core";
 import ButtonArrow from "../../assets/arrowButton";
 import LandingImageTechnology from "../../assets/images/landingImage1";
@@ -123,7 +122,7 @@ const Title = styled.div`
   text-align: center;
 `;
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   const classes = useStyles();
   return (
     <>
@@ -136,10 +135,22 @@ const LandingPage = () => {
                 to you
               </Title>
               <ButtonContainer>
-                <Button variant="contained" className={classes.estimateButton}>
+                <Button
+                  variant="contained"
+                  className={classes.estimateButton}
+                  component={Link}
+                  to="/estimate"
+                  onClick={() => props.setValue(5)}
+                >
                   Free Estimate
                 </Button>
-                <Button variant="outlined" className={classes.learnButtonHero}>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButtonHero}
+                  component={Link}
+                  to="/revolution"
+                  onClick={() => props.setValue(2)}
+                >
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <span style={{ marginRight: "0.5rem" }}>Learn More</span>
                     <ButtonArrow
