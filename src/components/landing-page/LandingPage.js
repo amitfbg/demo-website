@@ -7,10 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import { Button, useMediaQuery, useTheme } from "@material-ui/core";
 import ButtonArrow from "../../assets/arrowButton";
 import LandingImageTechnology from "../../assets/images/landingImage1";
+import CustomSoftwareIcon from "../../assets/customSoftwareIcon";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: "5em",
+    padding: "0 1rem",
     [theme.breakpoints.down("md")]: {
       marginTop: "3em",
     },
@@ -43,12 +45,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   learnButton: {
-    ...theme.typography.learnButton,
+    borderColor: "#0B72B9",
+    borderWidth: "2px",
+    color: "#0B72B9",
+    borderRadius: "50rem",
     fontSize: "0.7rem",
     height: 35,
-    padding: 5,
+    padding: 10,
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "2em",
+      marginBottom: "0",
     },
   },
   heroTextContainer: {
@@ -66,15 +71,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1em",
   },
   icon: {
-    marginLeft: "2em",
+    marginLeft: "1rem",
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0,
     },
   },
   serviceContainer: {
-    marginTop: "12em",
+    marginTop: "1rem",
     [theme.breakpoints.down("sm")]: {
-      padding: 25,
+      marginTop: "0.5rem",
     },
   },
   revolutionBackground: {
@@ -122,6 +127,18 @@ const Title = styled.div`
   text-align: center;
 `;
 
+const Title2 = styled.div`
+  font-size: 1.75rem;
+  color: #0b72b9;
+  font-weight: 700;
+`;
+const Subtitle = styled.div`
+  font-size: 1.25rem;
+  color: #868686;
+  font-weight: 300;
+  margin: ${(props) => props.margin};
+`;
+
 const LandingPage = (props) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -130,6 +147,7 @@ const LandingPage = (props) => {
   return (
     <>
       <Grid container direction="column" className={classes.mainContainer}>
+        {/* ------landing page intro------ */}
         <Grid item>
           <Grid
             container
@@ -175,7 +193,55 @@ const LandingPage = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>B</Grid>
+        {/* ------Custom Software-------- */}
+        <Grid item>
+          <Grid
+            container
+            className={classes.serviceContainer}
+            justify={matchesSM ? "center" : "flex-start"}
+            alignItems="center"
+          >
+            <Grid
+              item
+              style={{
+                marginLeft: matchesSM ? 0 : "3rem",
+                marginRight: matchesSM ? 0 : "0.5rem",
+                textAlign: matchesSM ? "center" : undefined,
+              }}
+            >
+              <Title2>Custom Software Development</Title2>
+              <Subtitle margin={"0 0 0.1rem"}>
+                Save Energy. Save Time. Save Money.
+              </Subtitle>
+              <Subtitle>
+                Complete digital solutions, from investigation to{" "}
+                <span className={classes.specialText}>celebration.</span>
+              </Subtitle>
+              <ButtonContainer>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  component={Link}
+                  to="/customsoftware"
+                  onClick={() => {
+                    props.setValue(1);
+                    props.setSelectedIndex(1);
+                  }}
+                >
+                  <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                  <ButtonArrow
+                    height={"0.625rem"}
+                    width={"0.625rem"}
+                    fill={"#0B72B9"}
+                  />
+                </Button>
+              </ButtonContainer>
+            </Grid>
+            <Grid item>
+              <CustomSoftwareIcon className={classes.icon} />
+            </Grid>
+          </Grid>
+        </Grid>
         <Grid item>C</Grid>
         <Grid item>D</Grid>
         <Grid item>E</Grid>
