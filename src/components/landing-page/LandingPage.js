@@ -8,16 +8,19 @@ import { Button, useMediaQuery, useTheme } from "@material-ui/core";
 import ButtonArrow from "../../assets/arrowButton";
 import LandingImageTechnology from "../../assets/images/landingImage1";
 import CustomSoftwareIcon from "../../assets/customSoftwareIcon";
+import MobileIcon from "../../assets/mobileIcon";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: "5em",
-    padding: "0 1rem",
+    padding: "0 3rem",
     [theme.breakpoints.down("md")]: {
       marginTop: "3em",
+      padding: "0 2rem",
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: "2em",
+      padding: "0 1rem",
     },
   },
   estimateButton: {
@@ -204,8 +207,6 @@ const LandingPage = (props) => {
             <Grid
               item
               style={{
-                marginLeft: matchesSM ? 0 : "3rem",
-                marginRight: matchesSM ? 0 : "0.5rem",
                 textAlign: matchesSM ? "center" : undefined,
               }}
             >
@@ -238,7 +239,63 @@ const LandingPage = (props) => {
               </ButtonContainer>
             </Grid>
             <Grid item>
-              <CustomSoftwareIcon className={classes.icon} />
+              <CustomSoftwareIcon
+                className={classes.icon}
+                matchesSM={matchesSM}
+                matchesXS={matchesXS}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        {/* ------iOS/Android App Development-------- */}
+        <Grid item>
+          <Grid
+            container
+            className={classes.serviceContainer}
+            justify={matchesSM ? "center" : "flex-end"}
+            alignItems="center"
+          >
+            <Grid
+              item
+              style={{
+                textAlign: matchesSM ? "center" : undefined,
+              }}
+            >
+              <Title2>iOS/Android App Development</Title2>
+              <Subtitle margin={"0 0 0.1rem"}>
+                Extend Functionality. Extend Access. Increase Engagement.
+              </Subtitle>
+              <Subtitle>
+                Integrate your web experience or create a standalone app
+                <br />
+                with either mobile platform.
+              </Subtitle>
+              <ButtonContainer>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  component={Link}
+                  to="/mobileapps"
+                  onClick={() => {
+                    props.setValue(1);
+                    props.setSelectedIndex(2);
+                  }}
+                >
+                  <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                  <ButtonArrow
+                    height={"0.625rem"}
+                    width={"0.625rem"}
+                    fill={"#0B72B9"}
+                  />
+                </Button>
+              </ButtonContainer>
+            </Grid>
+            <Grid item>
+              <MobileIcon
+                className={classes.icon}
+                matchesSM={matchesSM}
+                matchesXS={matchesXS}
+              />
             </Grid>
           </Grid>
         </Grid>
