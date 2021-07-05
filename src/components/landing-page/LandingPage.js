@@ -9,6 +9,9 @@ import ButtonArrow from "../../assets/arrowButton";
 import LandingImageTechnology from "../../assets/images/landingImage1";
 import CustomSoftwareIcon from "../../assets/customSoftwareIcon";
 import MobileIcon from "../../assets/mobileIcon";
+import WebsiteIcon from "../../assets/websiteIcon";
+import RevolutionImage from "../../assets/repeatingBackground.svg";
+import InfoBackground from "../../assets/infoBackground.svg";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -86,29 +89,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   revolutionBackground: {
-    //   backgroundImage: `url(${revolutionBackground})`,
+    backgroundImage: `url(${RevolutionImage})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "100%",
-    width: "100%",
-  },
-  revolutionCard: {
-    position: "absolute",
-    boxShadow: theme.shadows[10],
-    borderRadius: 15,
-    padding: "10em",
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: "8em",
-      paddingBottom: "8em",
-      paddingLeft: 0,
-      paddingRight: 0,
-      borderRadius: 0,
-      width: "100%",
-    },
   },
   infoBackground: {
-    // backgroundImage: `url(${infoBackground})`,
+    backgroundImage: `url(${InfoBackground})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -299,9 +287,185 @@ const LandingPage = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>C</Grid>
-        <Grid item>D</Grid>
-        <Grid item>E</Grid>
+        {/* ------Website Development-------- */}
+        <Grid item>
+          <Grid
+            container
+            className={classes.serviceContainer}
+            justify={matchesSM ? "center" : "flex-start"}
+            alignItems="center"
+          >
+            <Grid
+              item
+              style={{
+                textAlign: matchesSM ? "center" : undefined,
+              }}
+            >
+              <Title2>Website Development</Title2>
+              <Subtitle margin={"0 0 0.1rem"}>
+                Reach More. Discover More. Sell More.
+              </Subtitle>
+              <Subtitle>
+                Optimized for Search Engines, built for speed.
+              </Subtitle>
+              <ButtonContainer>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  component={Link}
+                  to="/websites"
+                  onClick={() => {
+                    props.setValue(1);
+                    props.setSelectedIndex(3);
+                  }}
+                >
+                  <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                  <ButtonArrow
+                    height={"0.625rem"}
+                    width={"0.625rem"}
+                    fill={"#0B72B9"}
+                  />
+                </Button>
+              </ButtonContainer>
+            </Grid>
+            <Grid item>
+              <WebsiteIcon
+                className={classes.icon}
+                matchesSM={matchesSM}
+                matchesXS={matchesXS}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container direction="column">
+        {/* ------The Revolution Block-------- */}
+        <Grid item>
+          <Grid
+            container
+            className={classes.revolutionBackground}
+            style={{ height: "15rem" }}
+            justify="center"
+            alignItems="center"
+          >
+            <Grid
+              item
+              style={{
+                textAlign: matchesSM ? "center" : undefined,
+              }}
+            >
+              <Title2>The Revolution</Title2>
+              <Subtitle margin={"0 0 0.1rem"}>
+                Visionary insights coupled with cutting-edge technology is a
+                recipe for revolution.
+              </Subtitle>
+              <ButtonContainer>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  component={Link}
+                  to="/revolution"
+                  onClick={() => {
+                    props.setValue(2);
+                  }}
+                >
+                  <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                  <ButtonArrow
+                    height={"0.625rem"}
+                    width={"0.625rem"}
+                    fill={"#0B72B9"}
+                  />
+                </Button>
+              </ButtonContainer>
+            </Grid>
+          </Grid>
+        </Grid>
+        {/* ------Information Block-------- */}
+        <Grid item>
+          <Grid
+            container
+            style={{ height: "15rem" }}
+            className={classes.infoBackground}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid
+              item
+              container
+              style={{
+                textAlign: matchesXS ? "center" : "inherit",
+              }}
+              direction={matchesXS ? "column" : "row"}
+            >
+              <Grid
+                item
+                sm
+                style={{
+                  marginLeft: matchesXS ? "1rem" : matchesSM ? "2rem" : "3rem",
+                }}
+              >
+                <Grid container direction="column">
+                  <Title2>About Us</Title2>
+                  <Subtitle margin={"0 0 0.1rem"}>Let's get personal.</Subtitle>
+                  <ButtonContainer>
+                    <Button
+                      variant="outlined"
+                      className={classes.learnButton}
+                      component={Link}
+                      to="/about"
+                      onClick={() => {
+                        props.setValue(3);
+                      }}
+                    >
+                      <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                      <ButtonArrow
+                        height={"0.625rem"}
+                        width={"0.625rem"}
+                        fill={"#0B72B9"}
+                      />
+                    </Button>
+                  </ButtonContainer>
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                sm
+                style={{
+                  marginLeft: matchesXS ? "1rem" : matchesSM ? "2rem" : "3rem",
+                }}
+              >
+                <Grid container direction="column">
+                  <Title2>Contact Us</Title2>
+                  <Subtitle margin={"0 0 0.1rem"}>
+                    Say hello!{" "}
+                    <span role="img" aria-label="waving hand">
+                      👋🏻
+                    </span>
+                  </Subtitle>
+                  <ButtonContainer>
+                    <Button
+                      variant="outlined"
+                      className={classes.learnButton}
+                      component={Link}
+                      to="/contact"
+                      onClick={() => {
+                        props.setValue(4);
+                      }}
+                    >
+                      <span style={{ marginRight: "0.5rem" }}>Learn More</span>
+                      <ButtonArrow
+                        height={"0.625rem"}
+                        width={"0.625rem"}
+                        fill={"#0B72B9"}
+                      />
+                    </Button>
+                  </ButtonContainer>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </>
   );
